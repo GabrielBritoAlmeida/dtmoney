@@ -1,4 +1,4 @@
-# dtmoney
+# dtmoney 👨‍💻️
 
 Projeto levantado usando "create-react-app" com template em typescript.
 
