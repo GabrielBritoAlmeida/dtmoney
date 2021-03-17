@@ -16,4 +16,8 @@ Com entradas, saídas e controle de datas.
 
 ```tsx
 yarn add styled-components
+
+# and
+
+yarn add @types/styled-components -D
 ```
