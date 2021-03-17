@@ -15,5 +15,5 @@ Com entradas, saídas e controle de datas.
 ### Comandos para sustentação e evolução do projeto
 
 ```tsx
-yarn;
+yarn add styled-components
 ```
