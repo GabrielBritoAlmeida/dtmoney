@@ -1,6 +1,6 @@
 # dtmoney 👨‍💻️
 
-Projeto levantado usando "create-react-app" com template em typescript.
+💡️ Projeto levantado usando "create-react-app" com template em typescript.
 
 ```tsx
 yarn create react-app dtmoney --template typescript
