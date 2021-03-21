@@ -17,7 +17,7 @@ export const Container = styled.div`
 export const Image = styled.img``
 
 export const Button = styled.button`
-  font-size: 1.6rem;
+  font-size: ${theme.font.sizes.large};
   color: ${theme.colors.white};
   background-color: ${theme.colors.blueLight};
   border: 0;
