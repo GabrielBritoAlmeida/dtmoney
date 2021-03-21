@@ -1,6 +1,10 @@
 export default {
+  grid: {
+    container: '130rem'
+  },
+
   border: {
-    radius: '0.5rem'
+    radius: '0.4rem'
   },
 
   font: {
@@ -8,12 +12,13 @@ export default {
     normal: 400,
     bold: 600,
     sizes: {
+      xxsmall: '0.5rem',
       xsmall: '1rem',
-      small: '1.5rem',
-      medium: '2rem',
-      large: '2.5rem',
-      xlarge: '3rem',
-      xxlarge: '3.5rem'
+      small: '1.2rem',
+      medium: '1.4rem',
+      large: '1.6rem',
+      xlarge: '1.8rem',
+      xxlarge: '2rem'
     }
   },
 
@@ -29,12 +34,13 @@ export default {
   },
 
   spacings: {
+    xxsmall: '0.5rem',
     xsmall: '1rem',
-    small: '1.5rem',
-    medium: '2rem',
-    large: '2.5rem',
-    xlarge: '3rem',
-    xxlarge: '3.5rem'
+    small: '1.2rem',
+    medium: '1.4rem',
+    large: '1.6rem',
+    xlarge: '1.8rem',
+    xxlarge: '2rem'
   },
 
   layers: {
