@@ -12,15 +12,6 @@ export const GlobalStyles = createGlobalStyle`
 
   html {
     font-size: 62.5%;
-
-    @media (max-width: 1080px) {
-      font-size: ${theme.font.sizes.large};
-    }
-
-    @media (max-width: 720px) {
-      font-size: ${theme.font.sizes.medium};
-    }
-
   }
 
   button {

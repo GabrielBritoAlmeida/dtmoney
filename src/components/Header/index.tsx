@@ -8,7 +8,7 @@ export const Header: React.FC = () => {
       <S.Container>
         <S.Image
           src={logoImg}
-          alt="Logo com símbolo de cifrão com fundo verde e ao lado escrito dt-money"
+          alt="Logo com símbolo de cifrão, com fundo verde e ao lado escrito dt-money"
         />
         <S.Button>Nova transação</S.Button>
       </S.Container>

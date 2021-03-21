@@ -1,6 +1,6 @@
 export default {
   grid: {
-    container: '130rem'
+    container: '112rem'
   },
 
   border: {
@@ -25,6 +25,7 @@ export default {
   colors: {
     background: '#f0f2f5',
     shape: '#fff',
+    white: '#fff',
     red: '#E52e4D',
     blue: '#5429CC',
     green: '#33CC95',
