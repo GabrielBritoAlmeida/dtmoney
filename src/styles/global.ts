@@ -1,20 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
+import theme from './theme'
 
 export const GlobalStyles = createGlobalStyle`
-  :root {
-    --background: #f0f2f5;
-    --shape: #fff;
-
-    --red: #E52e4D;
-
-    --blue: #5429CC;
-    --blue-light: #6933ff;
-
-    --green: #33CC95;
-
-    --text-title: #363F5F;
-    --text-body: #969cb3;
-
 
   * {
     margin: 0;
@@ -42,6 +29,16 @@ export const GlobalStyles = createGlobalStyle`
   [disabled] {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  body, input, textarea, button {
+    font-family: ${theme.font.fontFamily};
+    font-weight: 400;
+
+  }
+
+  h1, h2, h3, h4, h5, h6, strong {
+    font-weight: 600;
   }
 
 
