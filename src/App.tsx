@@ -1,5 +1,6 @@
 import Dashboard from 'components/Dashboard'
 import { Header } from 'components/Header'
+import { TransactionsTable } from 'components/TransactionsTable'
 import { GlobalStyles } from 'styles/global'
 
 export const App: React.FC = () => {
@@ -7,6 +8,7 @@ export const App: React.FC = () => {
     <>
       <Header />
       <Dashboard />
+      <TransactionsTable />
       <GlobalStyles />
     </>
   )
