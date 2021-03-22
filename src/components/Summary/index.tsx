@@ -6,38 +6,38 @@ import totalImg from 'assets/total.svg'
 const Summary: React.FC = () => {
   return (
     <S.Wrapper>
-      <div>
-        <header>
-          <p>Entradas</p>
+      <S.Box>
+        <S.Header>
+          <S.TitleHeader>Entradas</S.TitleHeader>
           <img
             src={incomeImg}
-            alt="Ícone com circulo e uma seta apontando para cima"
+            alt="Ícone com circulo e uma seta apontando para cima, indicando entrada de valor"
           />
-        </header>
-        <strong>R$1000,00</strong>
-      </div>
+        </S.Header>
+        <S.Value>R$1000,00</S.Value>
+      </S.Box>
 
-      <div>
-        <header>
-          <p>Saídas</p>
+      <S.Box>
+        <S.Header>
+          <S.TitleHeader>Saídas</S.TitleHeader>
           <img
             src={outcomeImg}
-            alt="Ícone com circulo e uma seta apontando para baixo"
+            alt="Ícone com circulo e uma seta apontando para baixo, indicando saída de valor"
           />
-        </header>
-        <strong>R$200,00</strong>
-      </div>
+        </S.Header>
+        <S.Value>R$200,00</S.Value>
+      </S.Box>
 
-      <div>
-        <header>
-          <p>Total</p>
+      <S.Box className="highlight-background">
+        <S.Header>
+          <S.TitleHeader>Total</S.TitleHeader>
           <img
             src={totalImg}
-            alt="Ícone com circulo e uma seta apontando para cima"
+            alt="Ícone com circulo e símbolo de cifrão para valor monetário, representando o valor total"
           />
-        </header>
-        <strong>R$1000,00</strong>
-      </div>
+        </S.Header>
+        <S.Value>R$1000,00</S.Value>
+      </S.Box>
     </S.Wrapper>
   )
 }
