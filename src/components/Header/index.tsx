@@ -1,8 +1,13 @@
 import logoImg from '../../assets/logo.svg'
-
 import * as S from './styles'
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  onOpenNewTransactionModal: () => void
+}
+
+export const Header: React.FC<HeaderProps> = ({
+  onOpenNewTransactionModal
+}: HeaderProps) => {
   return (
     <S.Wrapper>
       <S.Container>
@@ -10,7 +15,7 @@ export const Header: React.FC = () => {
           src={logoImg}
           alt="Logo com símbolo de cifrão, com fundo verde e ao lado escrito dt-money"
         />
-        <S.Button>Nova transação</S.Button>
+        <S.Button onClick={onOpenNewTransactionModal}>Nova transação</S.Button>
       </S.Container>
     </S.Wrapper>
   )
