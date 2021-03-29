@@ -12,7 +12,7 @@ Projeto para controle pessoal de finanças.
 
 Com entradas, saídas e controle de datas.
 
-### Comandos para sustentação e evolução do projeto
+### Comandos para sustentação e evolução do projeto com novas libs.
 
 ```tsx
 yarn add styled-components
