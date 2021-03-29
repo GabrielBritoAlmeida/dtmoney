@@ -2,10 +2,9 @@ import styled from 'styled-components'
 import theme from 'styles/theme'
 
 export const Wrapper = styled.div`
-  margin-top: 6.4rem;
   max-width: ${theme.grid.container};
   margin: 0 auto;
-  padding: 0 1.6rem;
+  padding: 2rem 1.6rem;
 `
 
 export const Table = styled.table`
@@ -16,6 +15,7 @@ export const Table = styled.table`
 export const TableHeader = styled.thead``
 
 export const Th = styled.th`
+  padding: 1.6rem 3.2rem;
   color: ${theme.colors.textBody};
   font-weight: 400;
   text-align: left;
@@ -29,6 +29,25 @@ export const Td = styled.td`
   border: 0;
   background-color: ${theme.colors.shape};
   font-weight: normal;
+
+  :first-child {
+    color: ${theme.colors.textTitle};
+  }
+`
+export const TdDeposit = styled.td`
+  padding: 1.6rem 3.2rem;
+  border: 0;
+  background-color: ${theme.colors.shape};
+  font-weight: normal;
+  color: ${theme.colors.green};
+`
+
+export const TdWithDrown = styled.td`
+  padding: 1.6rem 3.2rem;
+  border: 0;
+  background-color: ${theme.colors.shape};
+  font-weight: normal;
+  color: ${theme.colors.red};
 `
 
 export const TableBody = styled.tbody``
