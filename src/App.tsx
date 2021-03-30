@@ -4,7 +4,8 @@ import { TransactionsTable } from 'components/TransactionsTable'
 import { GlobalStyles } from 'styles/global'
 import { createServer } from 'miragejs'
 import { useState } from 'react'
-import Modal from 'react-modal'
+import { NewTransactionModal } from 'components/NewTransactionModal'
+import ReactModal from 'react-modal'
 
 createServer({
   routes() {
@@ -25,6 +26,8 @@ createServer({
   }
 })
 
+ReactModal.setAppElement('#root')
+
 export const App: React.FC = () => {
   const [isNewModalTransactionOpen, setIsNewModalTransactionOpen] = useState(
     false
@@ -44,12 +47,11 @@ export const App: React.FC = () => {
       <Dashboard />
       <TransactionsTable />
 
-      <Modal
+      <NewTransactionModal
         isOpen={isNewModalTransactionOpen}
         onRequestClose={handleCloseNewTransactionModal}
-      >
-        <h2>Cadastrar transação</h2>
-      </Modal>
+      />
+
       <GlobalStyles />
     </>
   )
