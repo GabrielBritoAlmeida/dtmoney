@@ -17,8 +17,8 @@ export const Input = styled.input`
   padding: 0 2.4rem;
   height: 6.4rem;
   border-radius: ${theme.border.radius};
-  border: 1px solid #d7d7d7;
-  background-color: #e7e9ee;
+  border: 1px solid ${theme.colors.gray};
+  background-color: ${theme.colors.backgroundSecondary};
 
   font-weight: 400;
   font-size: ${theme.font.sizes.large};
@@ -77,6 +77,7 @@ export const ButtonTransaction = styled.button`
   border: 0.1rem solid #d7d7d7;
   border-radius: ${theme.border.radius};
   height: 6.4rem;
+  background-color: transparent;
   transition: border-color 0.2s;
 
   img {

@@ -24,6 +24,7 @@ export default {
 
   colors: {
     background: '#f0f2f5',
+    backgroundSecondary: '#e7e9ee',
     shape: '#fff',
     white: '#fff',
     red: '#E52e4D',
@@ -31,7 +32,8 @@ export default {
     green: '#33CC95',
     blueLight: '#6933ff',
     textTitle: '#363F5F',
-    textBody: '#969cb3'
+    textBody: '#969cb3',
+    gray: '#d7d7d7'
   },
 
   spacings: {
