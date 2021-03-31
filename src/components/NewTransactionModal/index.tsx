@@ -4,6 +4,7 @@ import * as S from './styles'
 
 import ImgIncome from 'assets/income.svg'
 import ImgOutcome from 'assets/outcome.svg'
+import { useState } from 'react'
 
 interface NewTransactionModalProps {
   isOpen: boolean
@@ -14,6 +15,8 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
   isOpen,
   onRequestClose
 }: NewTransactionModalProps) => {
+  const [type, setType] = useState('deposit')
+
   return (
     <Modal
       isOpen={isOpen}
@@ -38,14 +41,28 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
         <S.Input type="number" placeholder="Valor" />
 
         <S.TransactionContainer>
-          <S.ButtonTransaction>
+          <S.ButtonTransaction
+            isActive={type === 'deposit'}
+            activeColor="green"
+            type="button"
+            onClick={() => {
+              setType('deposit')
+            }}
+          >
             <img
               src={ImgIncome}
               alt="Símbolo que representa valor de entrada"
             />
             <span>Entrada</span>
           </S.ButtonTransaction>
-          <S.ButtonTransaction>
+          <S.ButtonTransaction
+            isActive={type === 'withdraw'}
+            activeColor="red"
+            type="button"
+            onClick={() => {
+              setType('withdraw')
+            }}
+          >
             <img src={ImgOutcome} alt="Símbolo que representa valor de saída" />
             <span>Saída</span>
           </S.ButtonTransaction>

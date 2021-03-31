@@ -30,7 +30,6 @@ export default {
     red: '#E52e4D',
     blue: '#5429CC',
     green: '#33CC95',
-    greenBackground: '#D1DFD7',
     blueLight: '#6933ff',
     textTitle: '#363F5F',
     textBody: '#969cb3',

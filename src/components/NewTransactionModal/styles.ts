@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import theme from 'styles/theme'
-import { darken } from 'polished'
+import { darken, transparentize } from 'polished'
 
 export const Form = styled.form`
   position: relative;
@@ -69,7 +69,17 @@ export const TransactionContainer = styled.div`
   gap: 1rem;
 `
 
-export const ButtonTransaction = styled.button`
+interface ButtonTransactionProp {
+  isActive: boolean
+  activeColor: 'green' | 'red'
+}
+
+const colors = {
+  green: `${theme.colors.green}`,
+  red: `${theme.colors.red}`
+}
+
+export const ButtonTransaction = styled.button<ButtonTransactionProp>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,8 +87,9 @@ export const ButtonTransaction = styled.button`
   border: 0.1rem solid #d7d7d7;
   border-radius: ${theme.border.radius};
   height: 6.4rem;
-  background-color: transparent;
   transition: border-color 0.2s;
+  background-color: ${({ isActive, activeColor }) =>
+    isActive ? transparentize(0.9, colors[activeColor]) : 'transparent'};
 
   img {
     width: 2rem;
