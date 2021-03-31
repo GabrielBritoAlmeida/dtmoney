@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import theme from 'styles/theme'
+import { darken } from 'polished'
 
 export const Form = styled.form`
   position: relative;
@@ -58,5 +59,39 @@ export const ButtonCloseModal = styled.button`
 
   :hover {
     filter: brightness(0.8);
+  }
+`
+
+export const TransactionContainer = styled.div`
+  margin: ${theme.spacings.large} 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+`
+
+export const ButtonTransaction = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0.1rem solid #d7d7d7;
+  border-radius: ${theme.border.radius};
+  height: 6.4rem;
+  transition: border-color 0.2s;
+
+  img {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  span {
+    display: inline-block;
+    margin-left: ${theme.spacings.large};
+    font-size: ${theme.font.sizes.large};
+    color: ${theme.colors.textTitle};
+  }
+
+  :hover {
+    border-color: ${darken(0.1, '#d7d7d7')};
   }
 `

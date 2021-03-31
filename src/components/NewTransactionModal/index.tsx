@@ -2,6 +2,9 @@ import Modal from 'react-modal'
 import CloseImg from 'assets/close.svg'
 import * as S from './styles'
 
+import ImgIncome from 'assets/income.svg'
+import ImgOutcome from 'assets/outcome.svg'
+
 interface NewTransactionModalProps {
   isOpen: boolean
   onRequestClose: () => void
@@ -33,6 +36,21 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
 
         <S.Input type="text" placeholder="Título" />
         <S.Input type="number" placeholder="Valor" />
+
+        <S.TransactionContainer>
+          <S.ButtonTransaction>
+            <img
+              src={ImgIncome}
+              alt="Símbolo que representa valor de entrada"
+            />
+            <span>Entrada</span>
+          </S.ButtonTransaction>
+          <S.ButtonTransaction>
+            <img src={ImgOutcome} alt="Símbolo que representa valor de saída" />
+            <span>Saída</span>
+          </S.ButtonTransaction>
+        </S.TransactionContainer>
+
         <S.Input type="text" placeholder="Categoria" />
 
         <S.ButtonSubmit type="submit">Cadastrar</S.ButtonSubmit>
