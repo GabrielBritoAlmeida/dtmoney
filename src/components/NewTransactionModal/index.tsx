@@ -1,10 +1,12 @@
+import { FormEvent, useState } from 'react'
+
 import Modal from 'react-modal'
 import CloseImg from 'assets/close.svg'
 import * as S from './styles'
 
 import ImgIncome from 'assets/income.svg'
 import ImgOutcome from 'assets/outcome.svg'
-import { useState } from 'react'
+import { api } from 'services/api'
 
 interface NewTransactionModalProps {
   isOpen: boolean
@@ -15,7 +17,23 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
   isOpen,
   onRequestClose
 }: NewTransactionModalProps) => {
+  const [title, setTitle] = useState('')
   const [type, setType] = useState('deposit')
+  const [category, setCategory] = useState('')
+  const [value, setValue] = useState(0)
+
+  function handleCreatNewTransaction(event: FormEvent) {
+    event.preventDefault()
+
+    const data = {
+      title,
+      type,
+      category,
+      value
+    }
+
+    api.post('transactions', data)
+  }
 
   return (
     <Modal
@@ -31,14 +49,24 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
         }
       }}
     >
-      <S.Form>
+      <S.Form onSubmit={handleCreatNewTransaction}>
         <S.ButtonCloseModal type="button" onClick={onRequestClose}>
           <img src={CloseImg} alt="Botão com x, para fechar o modal" />
         </S.ButtonCloseModal>
         <S.TitleForm>Cadastrar transação</S.TitleForm>
 
-        <S.Input type="text" placeholder="Título" />
-        <S.Input type="number" placeholder="Valor" />
+        <S.Input
+          type="text"
+          placeholder="Título"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
+        <S.Input
+          type="number"
+          placeholder="Valor"
+          value={value}
+          onChange={(event) => setValue(Number(event.target.value))}
+        />
 
         <S.TransactionContainer>
           <S.ButtonTransaction
@@ -68,7 +96,12 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
           </S.ButtonTransaction>
         </S.TransactionContainer>
 
-        <S.Input type="text" placeholder="Categoria" />
+        <S.Input
+          type="text"
+          placeholder="Categoria"
+          value={category}
+          onChange={(event) => setCategory(event.target.value)}
+        />
 
         <S.ButtonSubmit type="submit">Cadastrar</S.ButtonSubmit>
       </S.Form>
