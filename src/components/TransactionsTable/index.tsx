@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { api } from 'services/api'
+import { RealMoney } from 'utils/realMoney'
+import { ConversionDate } from 'utils/consersionDate'
+
 import * as S from './styles'
 
 interface ITransactions {
@@ -13,7 +16,6 @@ interface ITransactions {
 
 export const TransactionsTable: React.FC = () => {
   const [transactions, setTransactions] = useState<ITransactions[]>([])
-  console.log('🚀 ~ file: index.tsx ~ line 16 ~ transactions', transactions)
 
   useEffect(() => {
     api
@@ -28,12 +30,12 @@ export const TransactionsTable: React.FC = () => {
         <S.Tr key={transaction.id}>
           <S.Td>{transaction.title}</S.Td>
           {transaction.type === 'deposit' ? (
-            <S.TdDeposit>R${transaction.amount}</S.TdDeposit>
+            <S.TdDeposit>{RealMoney(transaction.amount)}</S.TdDeposit>
           ) : (
-            <S.TdWithDrown>{`- R$ ${transaction.amount}`}</S.TdWithDrown>
+            <S.TdWithDrown>{RealMoney(transaction.amount)}</S.TdWithDrown>
           )}
           <S.Td>{transaction.category}</S.Td>
-          <S.Td>{transaction.createdAt}</S.Td>
+          <S.Td>{ConversionDate(transaction.createdAt)}</S.Td>
         </S.Tr>
       )),
     [transactions]
