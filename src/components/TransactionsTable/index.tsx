@@ -1,27 +1,12 @@
-import { useEffect, useMemo, useState } from 'react'
-import { api } from 'services/api'
+import { useContext, useMemo } from 'react'
 import { RealMoney } from 'utils/realMoney'
-import { ConversionDate } from 'utils/consersionDate'
+import { ConversionDate } from 'utils/conversionDate'
 
 import * as S from './styles'
-
-interface ITransactions {
-  id: number
-  title: string
-  amount: number
-  category: string
-  type: string
-  createdAt: string
-}
+import { TransactionsContext } from 'context/TransactionsContext'
 
 export const TransactionsTable: React.FC = () => {
-  const [transactions, setTransactions] = useState<ITransactions[]>([])
-
-  useEffect(() => {
-    api
-      .get('transactions')
-      .then((response) => setTransactions(response.data.transactions))
-  }, [])
+  const { transactions } = useContext(TransactionsContext)
 
   const allTransactions = useMemo(
     () =>

@@ -6,6 +6,7 @@ import { createServer, Model } from 'miragejs'
 import { useState } from 'react'
 import { NewTransactionModal } from 'components/NewTransactionModal'
 import ReactModal from 'react-modal'
+import { TransactionsProvider } from 'context/TransactionsContext'
 
 createServer({
   models: {
@@ -66,7 +67,7 @@ export const App: React.FC = () => {
   }
 
   return (
-    <>
+    <TransactionsProvider>
       <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
       <Dashboard />
       <TransactionsTable />
@@ -77,6 +78,6 @@ export const App: React.FC = () => {
       />
 
       <GlobalStyles />
-    </>
+    </TransactionsProvider>
   )
 }
