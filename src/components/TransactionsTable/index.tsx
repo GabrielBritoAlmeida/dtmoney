@@ -32,7 +32,7 @@ export const TransactionsTable: React.FC = () => {
           {transaction.type === 'deposit' ? (
             <S.TdDeposit>{RealMoney(transaction.amount)}</S.TdDeposit>
           ) : (
-            <S.TdWithDrown>{RealMoney(transaction.amount)}</S.TdWithDrown>
+            <S.TdWithDrown>-{RealMoney(transaction.amount)}</S.TdWithDrown>
           )}
           <S.Td>{transaction.category}</S.Td>
           <S.Td>{ConversionDate(transaction.createdAt)}</S.Td>

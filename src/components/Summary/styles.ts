@@ -15,6 +15,7 @@ export const Box = styled.div`
 
   &.highlight-background {
     background-color: ${theme.colors.green};
+    color: ${theme.colors.white};
   }
 `
 
