@@ -1,11 +1,43 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { api } from 'services/api'
 import * as S from './styles'
 
+interface ITransactions {
+  id: number
+  title: string
+  amount: number
+  category: string
+  type: string
+  createdAt: string
+}
+
 export const TransactionsTable: React.FC = () => {
+  const [transactions, setTransactions] = useState<ITransactions[]>([])
+  console.log('🚀 ~ file: index.tsx ~ line 16 ~ transactions', transactions)
+
   useEffect(() => {
-    api.get('transactions').then((response) => console.log(response.data))
+    api
+      .get('transactions')
+      .then((response) => setTransactions(response.data.transactions))
   }, [])
+
+  const allTransactions = useMemo(
+    () =>
+      transactions.length &&
+      transactions.map((transaction) => (
+        <S.Tr key={transaction.id}>
+          <S.Td>{transaction.title}</S.Td>
+          {transaction.type === 'deposit' ? (
+            <S.TdDeposit>R${transaction.amount}</S.TdDeposit>
+          ) : (
+            <S.TdWithDrown>{`- R$ ${transaction.amount}`}</S.TdWithDrown>
+          )}
+          <S.Td>{transaction.category}</S.Td>
+          <S.Td>{transaction.createdAt}</S.Td>
+        </S.Tr>
+      )),
+    [transactions]
+  )
 
   return (
     <S.Wrapper>
@@ -19,28 +51,7 @@ export const TransactionsTable: React.FC = () => {
           </S.Tr>
         </S.TableHeader>
 
-        <S.TableBody>
-          <S.Tr>
-            <S.Td>Desenvolvimento de website</S.Td>
-            <S.TdDeposit>R$12.000</S.TdDeposit>
-            <S.Td>Desenvolvimento</S.Td>
-            <S.Td>20/02/2021</S.Td>
-          </S.Tr>
-
-          <S.Tr>
-            <S.Td>Desenvolvimento de website</S.Td>
-            <S.TdDeposit>R$12.000</S.TdDeposit>
-            <S.Td>Desenvolvimento</S.Td>
-            <S.Td>20/02/2021</S.Td>
-          </S.Tr>
-
-          <S.Tr>
-            <S.Td>Deposito empresa</S.Td>
-            <S.TdWithDrown>-R$1.000</S.TdWithDrown>
-            <S.Td>Aluguel</S.Td>
-            <S.Td>20/02/2021</S.Td>
-          </S.Tr>
-        </S.TableBody>
+        <S.TableBody>{allTransactions}</S.TableBody>
       </S.Table>
     </S.Wrapper>
   )
