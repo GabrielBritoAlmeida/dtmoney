@@ -1,12 +1,12 @@
-import { useContext, useMemo } from 'react'
+import { useMemo } from 'react'
+import { useTransactions } from 'hooks/useTransactions'
 import { realMoney } from 'utils/realMoney'
 import { conversionDate } from 'utils/conversionDate'
 
 import * as S from './styles'
-import { TransactionsContext } from 'context/TransactionsContext'
 
 export const TransactionsTable: React.FC = () => {
-  const { transactions } = useContext(TransactionsContext)
+  const { transactions } = useTransactions()
 
   const allTransactions = useMemo(
     () =>
