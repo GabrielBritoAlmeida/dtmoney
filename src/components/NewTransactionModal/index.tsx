@@ -24,9 +24,15 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
   const [category, setCategory] = useState('')
   const [amount, setAmount] = useState(0)
 
-  function handleCreatNewTransaction(event: FormEvent) {
+  async function handleCreatNewTransaction(event: FormEvent) {
     event.preventDefault()
-    createTransaction({ title, amount, category, type })
+    await createTransaction({ title, amount, category, type })
+
+    setTitle('')
+    setType('deposit')
+    setCategory('')
+    setAmount(0)
+    onRequestClose()
   }
 
   return (
