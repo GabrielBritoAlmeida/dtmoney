@@ -1,4 +1,4 @@
-export function ConversionDate(date: string) {
+export function conversionDate(date: string) {
   try {
     const currentDate = new Date(date)
     const converteDate = new Intl.DateTimeFormat('pt-BR').format(currentDate)

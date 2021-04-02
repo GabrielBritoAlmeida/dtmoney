@@ -1,4 +1,4 @@
-export function RealMoney(amount: number) {
+export function realMoney(amount: number) {
   try {
     const money = new Intl.NumberFormat('pt-BR', {
       style: 'currency',

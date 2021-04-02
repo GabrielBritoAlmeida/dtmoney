@@ -10,12 +10,15 @@ interface ITransactions {
   createdAt: string
 }
 
+type TransactionsInput = Omit<ITransactions, 'id' | 'createdAt'>
+
 interface TransactionsProviderProps {
   children: ReactNode
 }
 
 interface TransactionsContextProps {
   transactions: ITransactions[]
+  createTransaction: (transaction: TransactionsInput) => void
 }
 
 export const TransactionsContext = createContext({} as TransactionsContextProps)
@@ -29,8 +32,12 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
       .then((response) => setTransactions(response.data.transactions))
   }, [])
 
+  function createTransaction(transaction: TransactionsInput) {
+    api.post('transactions', transaction)
+  }
+
   return (
-    <TransactionsContext.Provider value={{ transactions }}>
+    <TransactionsContext.Provider value={{ transactions, createTransaction }}>
       {children}
     </TransactionsContext.Provider>
   )

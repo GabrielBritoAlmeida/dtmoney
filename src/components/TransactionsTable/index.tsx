@@ -1,6 +1,6 @@
 import { useContext, useMemo } from 'react'
-import { RealMoney } from 'utils/realMoney'
-import { ConversionDate } from 'utils/conversionDate'
+import { realMoney } from 'utils/realMoney'
+import { conversionDate } from 'utils/conversionDate'
 
 import * as S from './styles'
 import { TransactionsContext } from 'context/TransactionsContext'
@@ -15,12 +15,12 @@ export const TransactionsTable: React.FC = () => {
         <S.Tr key={transaction.id}>
           <S.Td>{transaction.title}</S.Td>
           {transaction.type === 'deposit' ? (
-            <S.TdDeposit>{RealMoney(transaction.amount)}</S.TdDeposit>
+            <S.TdDeposit>{realMoney(transaction.amount)}</S.TdDeposit>
           ) : (
-            <S.TdWithDrown>-{RealMoney(transaction.amount)}</S.TdWithDrown>
+            <S.TdWithDrown>-{realMoney(transaction.amount)}</S.TdWithDrown>
           )}
           <S.Td>{transaction.category}</S.Td>
-          <S.Td>{ConversionDate(transaction.createdAt)}</S.Td>
+          <S.Td>{conversionDate(transaction.createdAt)}</S.Td>
         </S.Tr>
       )),
     [transactions]
