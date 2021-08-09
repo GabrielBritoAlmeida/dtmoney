@@ -1,6 +1,6 @@
-// import { screen } from '@testing-library/react'
+import React from 'react'
 import { Teste } from '.'
-import { renderWithTheme } from 'utils/helpers'
+import { renderWithTheme } from '../../utils/test/helpers'
 
 describe('<Teste />', () => {
   it('should render Teste', () => {
