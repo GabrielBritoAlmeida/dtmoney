@@ -27,23 +27,34 @@
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "2.2.1",
-    "typescript": "^4.2.4"
+    "typescript": "^4.2.4",
+    "@testing-library/dom": "^7.26.5",
+    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/react": "^11.1.1",
+    "@testing-library/react-hooks": "^3.4.2",
+    "@testing-library/user-event": "^12.2.0",
+    "babel-jest": "^26.6.3",
+    "faker": "^5.1.0",
+    "jest": "^26.6.3",
+    "jest-dom": "^4.0.0",
+    "react-test-renderer": "^16.9.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject",
+    "test": "jest",
+    "test:unit": "jest --config=jest-unit.config.js",
+    "test:unit:watch": "jest --config=jest-unit.config.js --watchAll",
+    "test:integration": "jest --config=jest-integration.config.js",
+    "test:integration:watch": "jest --config=jest-integration.config.js --watchAll",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage"
   },
   "browserslist": {
     "production": [
       ">0.2%",
+      "not dead",
       "not dead",
       "not op_mini all"
     ],
