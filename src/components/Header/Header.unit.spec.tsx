@@ -6,8 +6,12 @@ import { Header } from '.'
 
 describe('<Header />', () => {
   it('should render the Header', () => {
+    const onOpenNewTransactionModal = jest.fn()
     renderWithTheme(
-      <Header data-testid="header-test" onOpenNewTransactionModal={() => {}} />
+      <Header
+        data-testid="header-test"
+        onOpenNewTransactionModal={onOpenNewTransactionModal}
+      />
     )
 
     const header = screen.getByTestId('header-test')
