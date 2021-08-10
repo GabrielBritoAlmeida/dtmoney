@@ -18,4 +18,17 @@ describe('<Header />', () => {
 
     expect(header).toBeInTheDocument()
   })
+
+  it('should render the Header with atribute arial-label', () => {
+    const onOpenNewTransactionModal = jest.fn()
+    renderWithTheme(
+      <Header onOpenNewTransactionModal={onOpenNewTransactionModal} />
+    )
+
+    const header = screen.getByLabelText(
+      'header with logo dtmoney and button new transaction'
+    )
+
+    expect(header).toBeInTheDocument()
+  })
 })

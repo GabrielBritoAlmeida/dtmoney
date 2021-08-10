@@ -22,8 +22,15 @@ interface TransactionsProviderProps {
   children: ReactNode
 }
 
+interface SummaryProps {
+  deposit: number
+  withdrawn: number
+  total: number
+}
+
 interface TransactionsContextProps {
   transactions: ITransactions[]
+  summary: SummaryProps
   createTransaction: (transaction: TransactionsInput) => Promise<void>
 }
 
@@ -47,8 +54,29 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     setTransactions([...transactions, transaction])
   }
 
+  const summary = transactions.reduce(
+    (accumulator, transaction) => {
+      if (transaction.type === 'deposit') {
+        accumulator.deposit += transaction.amount
+        accumulator.total += transaction.amount
+      } else {
+        accumulator.withdrawn += transaction.amount
+        accumulator.total -= transaction.amount
+      }
+
+      return accumulator
+    },
+    {
+      deposit: 0,
+      withdrawn: 0,
+      total: 0
+    }
+  )
+
   return (
-    <TransactionsContext.Provider value={{ transactions, createTransaction }}>
+    <TransactionsContext.Provider
+      value={{ transactions, summary, createTransaction }}
+    >
       {children}
     </TransactionsContext.Provider>
   )

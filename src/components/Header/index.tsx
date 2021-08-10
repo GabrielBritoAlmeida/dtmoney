@@ -16,7 +16,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <S.Wrapper
       id="header-id"
-      aria-label="header with logo and button new transaction"
+      aria-label="header with logo dtmoney and button new transaction"
       {...props}
     >
       <S.Container>

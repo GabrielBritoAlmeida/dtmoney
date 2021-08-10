@@ -1,41 +1,22 @@
-import { useTransactions } from 'hooks/useTransactions'
+import React from 'react'
+import { images } from 'images'
 
-import incomeImg from 'assets/income.svg'
-import outcomeImg from 'assets/outcome.svg'
-import totalImg from 'assets/total.svg'
+import { useTransactions } from 'hooks/useTransactions'
+import { realMoney } from 'utils/realMoney'
+import { Image } from '../Image'
 
 import * as S from './styles'
-import { realMoney } from 'utils/realMoney'
 
 const Summary: React.FC = () => {
-  const { transactions } = useTransactions()
-
-  const summary = transactions.reduce(
-    (accumulator, transaction) => {
-      if (transaction.type === 'deposit') {
-        accumulator.deposit += transaction.amount
-        accumulator.total += transaction.amount
-      } else {
-        accumulator.withdrawn += transaction.amount
-        accumulator.total -= transaction.amount
-      }
-
-      return accumulator
-    },
-    {
-      deposit: 0,
-      withdrawn: 0,
-      total: 0
-    }
-  )
+  const { summary } = useTransactions()
 
   return (
-    <S.Wrapper>
+    <S.Wrapper aria-label="Summary of expenses, outgoing and incoming">
       <S.Box>
         <S.Header>
           <S.TitleHeader>Entradas</S.TitleHeader>
-          <img
-            src={incomeImg}
+          <Image
+            src={images.incomeImg}
             alt="Ícone com circulo e uma seta apontando para cima, indicando entrada de valor"
           />
         </S.Header>
@@ -45,8 +26,8 @@ const Summary: React.FC = () => {
       <S.Box>
         <S.Header>
           <S.TitleHeader>Saídas</S.TitleHeader>
-          <img
-            src={outcomeImg}
+          <Image
+            src={images.outcomeImg}
             alt="Ícone com circulo e uma seta apontando para baixo, indicando saída de valor"
           />
         </S.Header>
@@ -56,8 +37,8 @@ const Summary: React.FC = () => {
       <S.Box className="highlight-background">
         <S.Header>
           <S.TitleHeader>Total</S.TitleHeader>
-          <img
-            src={totalImg}
+          <Image
+            src={images.totalImg}
             alt="Ícone com circulo e símbolo de cifrão para valor monetário, representando o valor total"
           />
         </S.Header>
