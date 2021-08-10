@@ -1,7 +1,7 @@
 import React from 'react'
 import { screen } from '@testing-library/react'
-import { renderWithTheme } from '../../utils/test/helpers'
-import theme from '../../styles/theme'
+import { renderWithTheme } from 'utils/test/helpers'
+import theme from 'styles/theme'
 
 import { Button } from '.'
 

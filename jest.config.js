@@ -8,5 +8,6 @@ module.exports = {
   },
   collectCoverage: false,
   collectCoverageFrom: ['src/**/*.ts(x)?'],
-  testEnvironment: 'jsdom'
+  testEnvironment: 'jsdom',
+  modulePaths: ['<rootDir>/src/']
 }

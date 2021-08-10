@@ -1,3 +1,4 @@
+import React from 'react'
 import { images } from '../../images'
 import { Button } from '../Button'
 import { Image } from '../Image'
@@ -9,10 +10,15 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  onOpenNewTransactionModal
+  onOpenNewTransactionModal,
+  ...props
 }: HeaderProps) => {
   return (
-    <S.Wrapper>
+    <S.Wrapper
+      id="header-id"
+      aria-label="header with logo and button new transaction"
+      {...props}
+    >
       <S.Container>
         <Image
           src={images.logoImg}
