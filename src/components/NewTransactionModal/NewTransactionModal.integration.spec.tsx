@@ -19,8 +19,8 @@ describe('<NewTransactionModal /> - integration', () => {
   })
 
   it('should render the modal body', () => {
-    const form = screen.getByTestId('form-modal')
-    expect(form).toBeInTheDocument()
+    const modal = screen.getByRole('dialog')
+    expect(modal).toBeInTheDocument()
   })
 
   it('should perform the action of closing the modal, by clicking on the close fluff', async () => {

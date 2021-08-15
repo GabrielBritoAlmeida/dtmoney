@@ -25,6 +25,13 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
   const [category, setCategory] = useState('')
   const [amount, setAmount] = useState(0)
 
+  function disabledButtonRegister() {
+    if (title && type && category && amount) {
+      return false
+    }
+    return true
+  }
+
   async function handleCreatNewTransaction(event: FormEvent) {
     event.preventDefault()
     await createTransaction({ title, amount, category, type })
@@ -111,7 +118,9 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
           onChange={(event) => setCategory(event.target.value)}
         />
 
-        <S.ButtonSubmit type="submit">Cadastrar</S.ButtonSubmit>
+        <S.ButtonSubmit type="submit" disabled={disabledButtonRegister()}>
+          Cadastrar
+        </S.ButtonSubmit>
       </S.Form>
     </Modal>
   )

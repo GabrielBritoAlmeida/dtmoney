@@ -11,20 +11,70 @@ describe('<NewTransactionModal /> - unit', () => {
       <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
     )
 
-    const modal = screen.getByRole('heading', { name: /cadastrar transação/i })
-
+    const modal = screen.getByRole('dialog')
     expect(modal).toBeInTheDocument()
   })
 
-  it('should render the NewTransactionModal with isOpen=false', () => {
+  it('should not render the NewTransactionModal "isOpen=false"', () => {
     const onRequestClose = jest.fn()
     const isOpen = false
     renderWithTheme(
       <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
     )
 
-    const modal = screen.getByTestId('modal-close')
+    const modalClose = screen.getByTestId('modal-close')
+    expect(modalClose).toBeInTheDocument()
+  })
 
-    expect(modal).toBeInTheDocument()
+  it('should render NewTransactionModal with title "Cadastrar transação"', () => {
+    const onRequestClose = jest.fn()
+    const isOpen = true
+    renderWithTheme(
+      <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
+    )
+
+    const modalTitle = screen.getByRole('heading', {
+      name: /cadastrar transação/i
+    })
+    expect(modalTitle).toBeInTheDocument()
+  })
+
+  it('should render NewTransactionModal with button disabled"', () => {
+    const onRequestClose = jest.fn()
+    const isOpen = true
+    renderWithTheme(
+      <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
+    )
+
+    const buttonDisabled = screen.getByRole('button', {
+      name: /cadastrar/i
+    })
+    expect(buttonDisabled).toHaveAttribute('disabled')
+  })
+
+  it('should render NewTransactionModal with button "Entrada" and "Saída"', () => {
+    const onRequestClose = jest.fn()
+    const isOpen = true
+    renderWithTheme(
+      <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
+    )
+
+    const buttonEnter = screen.getByText(/entrada/i)
+    const buttonExit = screen.getByText(/saída/i)
+
+    expect(buttonEnter).toBeInTheDocument()
+    expect(buttonExit).toBeInTheDocument()
+  })
+
+  it('should render NewTransactionModal with button "amount"', () => {
+    const onRequestClose = jest.fn()
+    const isOpen = true
+    renderWithTheme(
+      <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
+    )
+
+    const buttonAmount = screen.getByRole('spinbutton')
+
+    expect(buttonAmount).toBeInTheDocument()
   })
 })
