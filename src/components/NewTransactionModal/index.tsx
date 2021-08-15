@@ -1,3 +1,4 @@
+import React from 'react'
 import { FormEvent, useState } from 'react'
 
 import Modal from 'react-modal'
@@ -15,7 +16,8 @@ interface NewTransactionModalProps {
 
 export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
   isOpen,
-  onRequestClose
+  onRequestClose,
+  ...props
 }: NewTransactionModalProps) => {
   const { createTransaction } = useTransactions()
   const [title, setTitle] = useState('')
@@ -34,6 +36,8 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
     onRequestClose()
   }
 
+  if (!isOpen) return <div data-testid="modal-close" />
+
   return (
     <Modal
       isOpen={isOpen}
@@ -47,6 +51,7 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
           maxWidth: 576
         }
       }}
+      {...props}
     >
       <S.Form onSubmit={handleCreatNewTransaction}>
         <S.ButtonCloseModal type="button" onClick={onRequestClose}>

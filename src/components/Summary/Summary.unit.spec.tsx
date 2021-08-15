@@ -72,4 +72,12 @@ describe('<Summary />', () => {
     expect(totalImg).toHaveAttribute('src', images.totalImg)
     expect(totalImg).toBeInTheDocument()
   })
+
+  it('should render the component Summary with className highlight-background', () => {
+    renderWithTheme(<Summary />)
+
+    const total = screen.getByText('Total')
+
+    expect(total).toHaveClass('sc-eCApnc ktGkXS')
+  })
 })
