@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react'
 import { renderWithTheme } from 'utils/test/helpers'
 import { NewTransactionModal } from '.'
 
-describe('<NewTransactionModal />', () => {
+describe('<NewTransactionModal /> - unit', () => {
   it('should render the NewTransactionModal', () => {
     const onRequestClose = jest.fn()
     const isOpen = true

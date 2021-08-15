@@ -53,9 +53,13 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
       }}
       {...props}
     >
-      <S.Form onSubmit={handleCreatNewTransaction}>
-        <S.ButtonCloseModal type="button" onClick={onRequestClose}>
-          <img src={CloseImg} alt="Botão com x, para fechar o modal" />
+      <S.Form onSubmit={handleCreatNewTransaction} data-testid="form-modal">
+        <S.ButtonCloseModal
+          aria-label="Botão com x, para fechar o modal"
+          type="button"
+          onClick={onRequestClose}
+        >
+          <img src={CloseImg} alt="imagem letra x" />
         </S.ButtonCloseModal>
         <S.TitleForm>Cadastrar transação</S.TitleForm>
 
