@@ -3,12 +3,19 @@ import { screen, waitFor } from '@testing-library/react'
 import { renderWithTheme } from 'utils/test/helpers'
 import { NewTransactionModal } from '.'
 import userEvent from '@testing-library/user-event'
+import ReactModal from 'react-modal'
 
 describe('<NewTransactionModal /> - integration', () => {
   const onRequestClose = jest.fn()
   const isOpen = true
 
   beforeEach(() => {
+    const el = document.createElement('div')
+    el.id = 'root'
+    document.body.appendChild(el)
+
+    ReactModal.setAppElement('#root')
+
     renderWithTheme(
       <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
     )
