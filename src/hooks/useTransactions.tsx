@@ -1,4 +1,4 @@
-import {
+import React, {
   createContext,
   ReactNode,
   useContext,
@@ -32,12 +32,15 @@ interface TransactionsContextProps {
   transactions: ITransactions[]
   summary: SummaryProps
   createTransaction: (transaction: TransactionsInput) => Promise<void>
+  type: string
+  setType: (type: string) => void
 }
 
 const TransactionsContext = createContext({} as TransactionsContextProps)
 
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<ITransactions[]>([])
+  const [type, setType] = useState<string>('deposit')
 
   useEffect(() => {
     api
@@ -75,7 +78,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
 
   return (
     <TransactionsContext.Provider
-      value={{ transactions, summary, createTransaction }}
+      value={{ transactions, summary, createTransaction, type, setType }}
     >
       {children}
     </TransactionsContext.Provider>
@@ -83,7 +86,5 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
 }
 
 export function useTransactions() {
-  const context = useContext(TransactionsContext)
-
-  return context
+  return useContext(TransactionsContext)
 }

@@ -3,6 +3,11 @@ import { ThemeProvider } from 'styled-components'
 import { render, RenderResult } from '@testing-library/react'
 
 import theme from '../../styles/theme'
+import { TransactionsProvider } from '../../hooks/useTransactions'
 
 export const renderWithTheme = (children: React.ReactNode): RenderResult =>
-  render(<ThemeProvider theme={theme}>{children}</ThemeProvider>)
+  render(
+    <ThemeProvider theme={theme}>
+      <TransactionsProvider>{children}</TransactionsProvider>
+    </ThemeProvider>
+  )

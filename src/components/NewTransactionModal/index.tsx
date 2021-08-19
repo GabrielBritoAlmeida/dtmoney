@@ -19,9 +19,8 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
   onRequestClose,
   ...props
 }: NewTransactionModalProps) => {
-  const { createTransaction } = useTransactions()
+  const { createTransaction, type, setType } = useTransactions()
   const [title, setTitle] = useState('')
-  const [type, setType] = useState('deposit')
   const [category, setCategory] = useState('')
   const [amount, setAmount] = useState(0)
 
@@ -85,12 +84,11 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
 
         <S.TransactionContainer>
           <S.ButtonTransaction
+            aria-label="button of deposit"
             isActive={type === 'deposit'}
             activeColor="green"
             type="button"
-            onClick={() => {
-              setType('deposit')
-            }}
+            onClick={() => setType('deposit')}
           >
             <img
               src={ImgIncome}
@@ -99,12 +97,11 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
             <span>Entrada</span>
           </S.ButtonTransaction>
           <S.ButtonTransaction
+            aria-label="button of withdraw"
             isActive={type === 'withdraw'}
             activeColor="red"
             type="button"
-            onClick={() => {
-              setType('withdraw')
-            }}
+            onClick={() => setType('withdraw')}
           >
             <img src={ImgOutcome} alt="Símbolo que representa valor de saída" />
             <span>Saída</span>
@@ -118,7 +115,11 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
           onChange={(event) => setCategory(event.target.value)}
         />
 
-        <S.ButtonSubmit type="submit" disabled={disabledButtonRegister()}>
+        <S.ButtonSubmit
+          type="submit"
+          aria-label="button of register"
+          disabled={disabledButtonRegister()}
+        >
           Cadastrar
         </S.ButtonSubmit>
       </S.Form>

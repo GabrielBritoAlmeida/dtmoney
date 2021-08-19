@@ -2,8 +2,21 @@ import React from 'react'
 import { screen } from '@testing-library/react'
 import { renderWithTheme } from 'utils/test/helpers'
 import { NewTransactionModal } from '.'
+import ReactModal from 'react-modal'
 
 describe('<NewTransactionModal /> - unit', () => {
+  beforeEach(() => {
+    const el = document.createElement('div')
+    el.id = 'root'
+    document.body.appendChild(el)
+
+    ReactModal.setAppElement('#root')
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('should render the NewTransactionModal', () => {
     const onRequestClose = jest.fn()
     const isOpen = true
@@ -76,5 +89,19 @@ describe('<NewTransactionModal /> - unit', () => {
     const buttonAmount = screen.getByRole('spinbutton')
 
     expect(buttonAmount).toBeInTheDocument()
+  })
+
+  it('should render the button as disabled if all fields are not filled', async () => {
+    const onRequestClose = jest.fn()
+    const isOpen = true
+    renderWithTheme(
+      <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
+    )
+
+    const buttonCadastrar = screen.getByRole('button', {
+      name: 'button of register'
+    })
+
+    expect(buttonCadastrar).toBeDisabled()
   })
 })
