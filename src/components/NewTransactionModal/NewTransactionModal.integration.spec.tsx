@@ -4,6 +4,7 @@ import { renderWithTheme } from 'utils/test/helpers'
 import { NewTransactionModal } from '.'
 import userEvent from '@testing-library/user-event'
 import ReactModal from 'react-modal'
+import { TransactionsProvider } from 'hooks/useTransactions'
 
 describe('<NewTransactionModal /> - integration', () => {
   const onRequestClose = jest.fn()
@@ -69,7 +70,9 @@ describe('<NewTransactionModal /> - integration', () => {
 
   it('should render the modal, with input button selected, then select "output" type with click', async () => {
     renderWithTheme(
-      <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
+      <TransactionsProvider>
+        <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
+      </TransactionsProvider>
     )
 
     const buttonExit = screen.getByRole('button', {
