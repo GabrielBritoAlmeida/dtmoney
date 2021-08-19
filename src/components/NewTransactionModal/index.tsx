@@ -1,5 +1,4 @@
 import React from 'react'
-import { FormEvent, useState } from 'react'
 
 import Modal from 'react-modal'
 import CloseImg from 'assets/close.svg'
@@ -19,28 +18,18 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
   onRequestClose,
   ...props
 }: NewTransactionModalProps) => {
-  const { createTransaction, type, setType } = useTransactions()
-  const [title, setTitle] = useState('')
-  const [category, setCategory] = useState('')
-  const [amount, setAmount] = useState(0)
-
-  function disabledButtonRegister() {
-    if (title && type && category && amount) {
-      return false
-    }
-    return true
-  }
-
-  async function handleCreatNewTransaction(event: FormEvent) {
-    event.preventDefault()
-    await createTransaction({ title, amount, category, type })
-
-    setTitle('')
-    setType('deposit')
-    setCategory('')
-    setAmount(0)
-    onRequestClose()
-  }
+  const {
+    type,
+    setType,
+    title,
+    setTitle,
+    amount,
+    setAmount,
+    category,
+    setCategory,
+    handleCreatNewTransaction,
+    disabledButtonRegister
+  } = useTransactions()
 
   if (!isOpen) return <div data-testid="modal-close" />
 
@@ -73,13 +62,15 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
           type="text"
           placeholder="Título"
           value={title}
-          onChange={(event) => setTitle(event.target.value)}
+          onChange={(event) => !!setTitle && setTitle(event.target.value)}
         />
         <S.Input
           type="number"
           placeholder="Valor"
           value={amount}
-          onChange={(event) => setAmount(Number(event.target.value))}
+          onChange={(event) =>
+            !!setAmount && setAmount(Number(event.target.value))
+          }
         />
 
         <S.TransactionContainer>
@@ -112,13 +103,13 @@ export const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
           type="text"
           placeholder="Categoria"
           value={category}
-          onChange={(event) => setCategory(event.target.value)}
+          onChange={(event) => !!setCategory && setCategory(event.target.value)}
         />
 
         <S.ButtonSubmit
           type="submit"
           aria-label="button of register"
-          disabled={disabledButtonRegister()}
+          disabled={!!disabledButtonRegister && disabledButtonRegister()}
         >
           Cadastrar
         </S.ButtonSubmit>

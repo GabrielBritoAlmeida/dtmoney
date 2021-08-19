@@ -98,13 +98,15 @@ describe('<NewTransactionModal /> - integration', () => {
 
   it('should render the button as disabled if all fields are not filled', async () => {
     renderWithTheme(
-      <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
+      <TransactionsProvider>
+        <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
+      </TransactionsProvider>
     )
 
     const buttonCadastrar = screen.getByRole('button', {
       name: 'button of register'
     })
 
-    expect(buttonCadastrar).toBeDisabled()
+    expect(buttonCadastrar).toHaveAttribute('disabled', '')
   })
 })
