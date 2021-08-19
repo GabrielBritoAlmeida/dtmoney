@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react'
 import { renderWithTheme } from 'utils/test/helpers'
 import { NewTransactionModal } from '.'
 import ReactModal from 'react-modal'
+import { TransactionsProvider } from 'hooks/useTransactions'
 
 describe('<NewTransactionModal /> - unit', () => {
   beforeEach(() => {
@@ -52,19 +53,6 @@ describe('<NewTransactionModal /> - unit', () => {
     expect(modalTitle).toBeInTheDocument()
   })
 
-  it('should render NewTransactionModal with button disabled"', () => {
-    const onRequestClose = jest.fn()
-    const isOpen = true
-    renderWithTheme(
-      <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
-    )
-
-    const buttonDisabled = screen.getByRole('button', {
-      name: /cadastrar/i
-    })
-    expect(buttonDisabled).toHaveAttribute('disabled')
-  })
-
   it('should render NewTransactionModal with button "Entrada" and "Saída"', () => {
     const onRequestClose = jest.fn()
     const isOpen = true
@@ -94,14 +82,17 @@ describe('<NewTransactionModal /> - unit', () => {
   it('should render the button as disabled if all fields are not filled', async () => {
     const onRequestClose = jest.fn()
     const isOpen = true
+
     renderWithTheme(
-      <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
+      <TransactionsProvider>
+        <NewTransactionModal isOpen={isOpen} onRequestClose={onRequestClose} />
+      </TransactionsProvider>
     )
 
     const buttonCadastrar = screen.getByRole('button', {
       name: 'button of register'
     })
 
-    expect(buttonCadastrar).toBeDisabled()
+    expect(buttonCadastrar).toHaveAttribute('disabled', '')
   })
 })
